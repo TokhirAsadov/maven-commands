@@ -45,3 +45,15 @@ public class User {
     private String name;
     private int age;
 }
+
+***
+
+# Lompok dependency
+```java
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.32</version>
+    <scope>provided</scope>
+</dependency>
+```
