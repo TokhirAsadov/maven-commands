@@ -1,5 +1,3 @@
----
-
 # Primitiv Funktsional Interfeyslar (Primitive Functional Interfaces)
 
 Java’da `java.util.function` paketida primitiv turlar (`int`, `long`, `double`) bilan ishlash uchun maxsus funktsional interfeyslar mavjud. Ular umumiy interfeyslarning optimallashtirilgan versiyalari bo‘lib, boxing va unboxing jarayonlarini oldini olish orqali samaradorlikni oshiradi.
