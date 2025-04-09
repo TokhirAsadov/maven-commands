@@ -5,7 +5,7 @@ Bu bo‘limda Java’dagi **Method Reference** va xususan **Constructor as Metho
 ---
 
 ## 1. Statik metodga ishora (Reference to a Static Method)
-Statik metodlarga sinf nomi orqali ishora qilinadi.
+Statik metodlarga class nomi orqali ishora qilinadi.
 
 ```java
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class InstanceMethodReference {
 ---
 
 ## 3. Turdagi obyektning metodiga ishora (Reference to an Instance Method of an Arbitrary Object)
-Muayyan sinf turidagi har qanday ob’ektning metodiga ishora qilinadi.
+Muayyan class turidagi har qanday ob’ektning metodiga ishora qilinadi.
 
 ```java
 import java.util.function.Function;
