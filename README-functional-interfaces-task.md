@@ -139,4 +139,4 @@ Book Two by Jane Smith (1985)
    - Har bir metodni alohida sinab, to‘g‘ri ishlashini tekshiring.
 
 ---
-[x] Hammaga omad G52!
+[ x ]  Hammaga omad G52!
