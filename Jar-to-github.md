@@ -40,7 +40,7 @@ mvn deploy
 
 #### Adding to `pom.xml`
 ```xml
-<repositories>
+  <repositories>
     <repository>
       <id>github</id>
       <url>https://maven.pkg.github.com/TokhirAsadov/module-5</url>
