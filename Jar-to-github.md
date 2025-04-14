@@ -25,6 +25,11 @@
     </servers>
 </settings>
 ```
+---
+#### `.jar` faylini GitHub Packages'ga nashr qilish:
+```bash
+mvn deploy
+```
 
 #### Adding to `pom.xml`
 ```xml
