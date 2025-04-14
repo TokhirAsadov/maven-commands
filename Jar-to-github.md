@@ -12,6 +12,13 @@
 ```
 
 ---
+#### GitHub Personal Access Token yaratish:
+- [] GitHub'da "Settings" → "Developer settings" → "Personal access tokens" → "Tokens (classic)" bo'limiga o'ting.
+- [] Yangi token yarating va write:packages va read:packages ruxsatlarini tanlang.
+- [] Tokenni saqlang (masalan, ghp_xxxxxxxxxxxxxxxx).
+
+---
+
 
 #### `~/.m2/settings.xml`
 ```xml
