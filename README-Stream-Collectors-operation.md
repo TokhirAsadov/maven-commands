@@ -375,3 +375,92 @@ TreeSet<String> result = names.stream()
   Map<String, Integer> result = names.stream()
                                     .collect(Collectors.toMap(n -> n, String::length, (v1, v2) -> v1));
   ```
+---
+
+# Collector interface
+### User class
+```java
+package uz.javatuz.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+    private String name;
+    private Integer age;
+    private String email;
+
+    public User(String name) {
+        this.name = name;
+    }
+    public User(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+```
+
+### ToXmlCollector
+```java
+import java.util.Set;
+import java.util.StringJoiner;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
+
+public class ToXmlCollector implements Collector<User, StringBuilder, String> {
+
+    @Override
+    public Supplier<StringBuilder> supplier() {
+        return StringBuilder::new; // Bo‘sh StringBuilder yaratadi
+    }
+
+    @Override
+    public BiConsumer<StringBuilder, User> accumulator() {
+        return (sb, user) -> { // Har bir User’ni XML qatoriga qo‘shadi
+            sb.append("<user>")
+              .append("<name>").append(user.getName()).append("</name>")
+              .append("<age>").append(user.getAge()).append("</age>")
+              .append("</user>");
+        };
+    }
+
+    @Override
+    public BinaryOperator<StringBuilder> combiner() {
+        return (sb1, sb2) -> { // Ikkita StringBuilder’ni birlashtiradi
+            sb1.append(sb2);
+            return sb1;
+        };
+    }
+
+    @Override
+    public Function<StringBuilder, String> finisher() {
+        return sb -> "<users>" + sb.toString() + "</users>"; // Yakuniy XML hosil qiladi
+    }
+
+    @Override
+    public Set<Characteristics> characteristics() {
+        return Set.of(); // Hech qanday maxsus xususiyat yo‘q
+    }
+
+    public static void main(String[] args) {
+        List<User> users = List.of(
+            new User("Ali", 25),
+            new User("Bob", 30)
+        );
+
+        String xml = users.stream()
+                         .collect(new ToXmlCollector());
+        System.out.println(xml);
+        // Natija:
+        // <users><user><name>Ali</name><age>25</age></user><user><name>Bob</name><age>30</age></user></users>
+    }
+}
+```
