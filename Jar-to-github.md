@@ -1,7 +1,7 @@
 # Jar File to Github
 
 #### maven project `pom.xml`
-```java
+```xml
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -27,7 +27,7 @@
 ```
 
 #### Adding to `pom.xml`
-```java
+```xml
 <repositories>
     <repository>
       <id>github</id>
