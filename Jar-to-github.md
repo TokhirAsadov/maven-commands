@@ -13,6 +13,19 @@
 
 ---
 
+#### `~/.m2/settings.xml`
+```xml
+<settings>
+    <servers>
+        <server>
+            <id>github</id>
+            <username>YOUR_GITHUB_USERNAME</username>
+            <password>YOUR_PERSONAL_ACCESS_TOKEN</password>
+        </server>
+    </servers>
+</settings>
+```
+
 #### Adding to `pom.xml`
 ```java
 <repositories>
