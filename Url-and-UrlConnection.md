@@ -79,7 +79,7 @@ public class URLConnectionPostExample {
 }
 ```
 ---
-#### `HttpURLConnection`
+# `HttpURLConnection`
 ```java
 import java.net.HttpURLConnection;
 import java.net.URL;
