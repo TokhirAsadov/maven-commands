@@ -78,3 +78,35 @@ public class URLConnectionPostExample {
     }
 }
 ```
+---
+#### `HttpURLConnection`
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class HttpURLConnectionExample {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("http://example.com");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+        
+        int responseCode = conn.getResponseCode();
+        System.out.println("Response Code: " + responseCode);
+        
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            BufferedReader reader = new BufferedReader(
+                new InputStreamReader(conn.getInputStream())
+            );
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        }
+        
+        conn.disconnect();
+    }
+}
+```
