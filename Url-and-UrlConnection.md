@@ -17,7 +17,7 @@ public class URLExample {
 ---
 
 # URLConnection class `java.net.URLConnection`
-#### Misol (HTTP GET request):
+#### Misol (`HTTP GET` request):
 ```java
 import java.net.URL;
 import java.net.URLConnection;
@@ -42,7 +42,7 @@ public class URLConnectionExample {
 }
 ```
 ***
-#### Misol (HTTP POST request):
+#### Misol (`HTTP POST` request):
 ```java
 import java.net.URL;
 import java.net.URLConnection;
