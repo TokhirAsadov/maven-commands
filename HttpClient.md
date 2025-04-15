@@ -66,3 +66,59 @@ public class HttpRequestPostExample {
     - `ofFile(Path)`: Fayldan ma'lumot.
     - `noBody()`: Body bo‘lmagan so‘rovlar uchun.
 ---
+# `HttpResponse` qayta ishlash
+#### Example (Sinxron `GET` request):
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class HttpClientSyncExample {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://example.com"))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Body: " + response.body());
+    }
+}
+```
+#### Example (Asinxron `GET` request):
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class HttpClientAsyncExample {
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://example.com"))
+                .build();
+
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept(System.out::println)
+                .join(); // Natijani kutish
+    }
+}
+```
+##### `BodyHandlers`:
+- `ofString()`: Javobni `String` sifatida qaytaradi.
+- `ofByteArray()`: Javobni `byte[]` sifatida qaytaradi.
+- `ofFile(Path)`: Javobni `fayl`ga saqlaydi.
+- `ofInputStream()`: Javobni `InputStream` sifatida qaytaradi.
+- `discarding()`: Javob tanasini e’tiborsiz qoldiradi.
+- `ofLines()`: Javobni satrlar oqimi (`Stream<String>`) sifatida qaytaradi.
+##### `HttpResponse` metodlari:
+- `statusCode()`: HTTP status kodini qaytaradi (`200`, `404` va `h.k`.).
+- `body()`: Javob tanasini qaytaradi.
+- `headers()`: Javob `header`’larini qaytaradi.
+- `uri()`: So‘rov yuborilgan `URI` ni qaytaradi.
+- `version()`: Ishlatilgan `HTTP` versiyasini qaytaradi (HTTP/1.1 yoki HTTP/2).
