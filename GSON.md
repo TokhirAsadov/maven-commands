@@ -236,3 +236,63 @@ Tushuntirish:
 - `TypeAdapter` classi `write()` (serializatsiya) va `read()` (deserializatsiya) metodlarini amalga oshiradi.
 - `write()` metodida JSON yoziladi, `read()` metodida JSON o‘qiladi.
 - `TypeAdapter` ko‘proq past darajali (low-level) boshqaruvni ta'minlaydi, lekin ko‘proq kod yozishni talab qiladi.
+---
+# Date uchun maxsus serializatsiya/deserializatsiya
+```java
+import com.google.gson.*;
+import java.lang.reflect.Type;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Date.class, new DateDeserializer())
+                .create();
+
+        // Serializatsiya
+        Person person = new Person("Ali", new Date());
+        String json = gson.toJson(person);
+        System.out.println("JSON:\n" + json);
+
+        // Deserializatsiya
+        Person deserializedPerson = gson.fromJson(json, Person.class);
+        System.out.println("Deserialized: name=" + deserializedPerson.name + ", date=" + deserializedPerson.date);
+    }
+}
+
+class Person {
+    String name;
+    Date date;
+
+    public Person(String name, Date date) {
+        this.name = name;
+        this.date = date;
+    }
+}
+
+class DateSerializer implements JsonSerializer<Date> {
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+    @Override
+    public JsonElement serialize(Date date, Type type, JsonSerializationContext context) {
+        return new JsonPrimitive(formatter.format(date));
+    }
+}
+
+class DateDeserializer implements JsonDeserializer<Date> {
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+    @Override
+    public Date deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
+        try {
+            return formatter.parse(json.getAsString());
+        } catch (ParseException e) {
+            throw new JsonParseException("Invalid date format", e);
+        }
+    }
+}
+```
