@@ -5,7 +5,7 @@ public class Main {
         // Class obyektini olish
         Class<?> clazz = Class.forName("java.util.ArrayList");
 
-        // Sinf haqida ma'lumot
+        // class haqida ma'lumot
         System.out.println("Class nomi: " + clazz.getName());
         System.out.println("Oddiy nomi: " + clazz.getSimpleName());
         System.out.println("Superklass: " + clazz.getSuperclass().getSimpleName());
@@ -34,7 +34,7 @@ import java.lang.reflect.Field;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Person sinfi
+        // Person classi
         Class<?> clazz = Person.class;
         Person person = new Person("Ali", 25);
 
@@ -90,7 +90,7 @@ import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Person sinfi
+        // Person classi
         Class<?> clazz = Person.class;
         Person person = new Person("Ali", 25);
 
@@ -142,7 +142,7 @@ import java.lang.reflect.Constructor;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        // Person sinfi
+        // Person classi
         Class<?> clazz = Person.class;
 
         // Konstruktor olish
