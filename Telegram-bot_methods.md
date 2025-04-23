@@ -51,3 +51,35 @@
         }
 ```
 ***
+# Docuemtn
+```java
+// Check for document
+        if (update.message() != null && update.message().document() != null && userStates.get(update.message().from().id()) == UserState.SHARING_DOCUMENT) {
+            Long chatID = update.message().from().id();
+            Document document = update.message().document();
+            String fileId = document.fileId();
+            String fileName = document.fileName() != null ? document.fileName() : "document_" + fileId;
+
+            // Confirm document received
+            String confirmationMessage = "Document received: " + fileName + "\nThank you for your submission.";
+            bot.execute(new SendMessage(chatID, confirmationMessage));
+
+            // Optional: Download the document
+            try {
+                GetFile getFile = new GetFile(fileId);
+                GetFileResponse fileResponse = bot.execute(getFile);
+                String filePath = fileResponse.file().filePath();
+                String downloadUrl = "https://api.telegram.org/file/bot" + bot.getToken() + "/" + filePath;
+                System.out.println("Document download URL: " + downloadUrl);
+                // You can use an HTTP client (e.g., OkHttp) to download the file from downloadUrl
+            } catch (Exception e) {
+                bot.execute(new SendMessage(chatID, "Error processing the document."));
+                e.printStackTrace();
+            }
+
+            // Update state (e.g., complete registration)
+            userStates.put(chatID, null); // Or move to another state
+            return;
+        }
+```
+***
