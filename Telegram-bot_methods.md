@@ -83,3 +83,35 @@
         }
 ```
 ***
+# Audio
+```java
+// Check for audio
+        if (update.message() != null && update.message().audio() != null && userStates.get(update.message().from().id()) == UserState.SHARING_AUDIO) {
+            Long chatID = update.message().from().id();
+            Audio audio = update.message().audio();
+            String fileId = audio.fileId();
+            String fileName = audio.title() != null ? audio.title() : "audio_" + fileId;
+
+            // Confirm audio received
+            String confirmationMessage = "Audio received: " + fileName + "\nThank you for your submission.";
+            bot.execute(new SendMessage(chatID, confirmationMessage));
+
+            // Optional: Download the audio
+            try {
+                GetFile getFile = new GetFile(fileId);
+                GetFileResponse fileResponse = bot.execute(getFile);
+                String filePath = fileResponse.file().filePath();
+                String downloadUrl = "https://api.telegram.org/file/bot" + bot.getToken() + "/" + filePath;
+                System.out.println("Audio download URL: " + downloadUrl);
+                // You can use an HTTP client (e.g., OkHttp) to download the file from downloadUrl
+            } catch (Exception e) {
+                bot.execute(new SendMessage(chatID, "Error processing the audio."));
+                e.printStackTrace();
+            }
+
+            // Update state
+            userStates.put(chatID, null);
+            return;
+        }
+```
+***
