@@ -1,4 +1,4 @@
-# Contact
+# `Contact`
 ```java
 // Kontaktni tekshirish
         if (update.message() != null && update.message().contact() != null) {
@@ -18,7 +18,7 @@
         }
 ```
 ***
-# Photo
+# `Photo`
 ```java
 // Check for photo
         if (update.message() != null && update.message().photo() != null && userStates.get(update.message().from().id()) == UserState.SHARING_PHOTO) {
@@ -51,7 +51,7 @@
         }
 ```
 ***
-# Docuemtn
+# `Docuemtn`
 ```java
 // Check for document
         if (update.message() != null && update.message().document() != null && userStates.get(update.message().from().id()) == UserState.SHARING_DOCUMENT) {
@@ -83,7 +83,7 @@
         }
 ```
 ***
-# Audio
+# `Audio`
 ```java
 // Check for audio
         if (update.message() != null && update.message().audio() != null && userStates.get(update.message().from().id()) == UserState.SHARING_AUDIO) {
@@ -113,5 +113,28 @@
             userStates.put(chatID, null);
             return;
         }
+```
+***
+# Send `Photo`, `Document`, `Audio`
+```java
+  // Send photos
+                if (photos != null && !photos.isEmpty()) {
+                    for (String fileId : photos) {
+                        bot.execute(new SendPhoto(chatID, fileId).caption("Photo"));
+                    }
+                    bot.execute(new SendMessage(chatID, "Sent " + photos.size() + " photo(s)."));
+                }
+
+                // Send document
+                if (documentFileId != null) {
+                    bot.execute(new SendDocument(chatID, documentFileId).caption("Document"));
+                    bot.execute(new SendMessage(chatID, "Sent document."));
+                }
+
+                // Send audio
+                if (audioFileId != null) {
+                    bot.execute(new SendAudio(chatID, audioFileId).caption("Audio"));
+                    bot.execute(new SendMessage(chatID, "Sent audio."));
+                }
 ```
 ***
