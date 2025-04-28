@@ -72,3 +72,50 @@ Tushuntirish:
 - `@Retention(RetentionPolicy.RUNTIME)`: Annotatsiya `runtime`'da reflection orqali o'qilishi mumkin.
 - `@Target(ElementType.METHOD)`: Annotatsiya faqat `metod`larga qo'llaniladi.
 - `value` va `priority` — annotatsiyaning parametrlaridir. `default` qiymatlar ularga ixtiyoriy qiymat berish imkonini beradi.
+***
+## Annotatsiyani ishlatish
+```java
+public class MyClass {
+    @MyCustomAnnotation(value = "TestMethod", priority = 5)
+    public void myMethod() {
+        System.out.println("Bu test metodi!");
+    }
+
+    public void anotherMethod() {
+        System.out.println("Bu oddiy metod!");
+    }
+}
+```
+## Annotatsiyani o'qish (Reflection API)
+```java
+import java.lang.reflect.Method;
+
+public class AnnotationProcessor {
+    public static void main(String[] args) throws Exception {
+        Class<?> clazz = MyClass.class;
+
+        // Sinfdagi barcha metodlarni olish
+        for (Method method : clazz.getDeclaredMethods()) {
+            // Annotatsiya mavjudligini tekshirish
+            if (method.isAnnotationPresent(MyCustomAnnotation.class)) {
+                MyCustomAnnotation annotation = method.getAnnotation(MyCustomAnnotation.class);
+                System.out.println("Metod: " + method.getName());
+                System.out.println("Value: " + annotation.value());
+                System.out.println("Priority: " + annotation.priority());
+            }
+        }
+    }
+}
+```
+Natija:
+```text
+Metod: myMethod
+Value: TestMethod
+Priority: 5
+```
+Tushuntirish:
+
+- `Reflection API` yordamida `MyClass` sinfidagi metodlar tekshiriladi.
+- `@MyCustomAnnotation` mavjud bo'lgan metodlar aniqlanadi va ularning parametrlar (`value` va `priority`) o'qiladi.
+---
+
