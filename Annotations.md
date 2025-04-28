@@ -2,7 +2,7 @@
 
 `@SuppressWarnings` annotatsiyasi Java'da kompilyator tomonidan chiqariladigan ogohlantirishlarni o'chirish uchun ishlatiladi. Quyida Java'da mavjud bo'lgan barcha standart ogohlantirish turlari va ularning tavsifi keltirilgan.
 
-## Ogohlantirishlar Jadvali
+## Warnings List
 
 | warning name | description |
 | --- | --- |
