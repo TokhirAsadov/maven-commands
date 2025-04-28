@@ -50,3 +50,6 @@
 - Annotatsiyani eng kichik doirada (masalan, metod yoki o'zgaruvchi darajasida) qo'llash yaxshidir, class darajasida ishlatish ogohlantirishlarni haddan tashqari yashirishi mumkin.
 - Har bir ogohlantirishni o'chirishdan oldin, uni tuzatish imkoniyati bor-yo'qligini ko'rib chiqing, chunki ogohlantirishlar potentsial xatolarni aniqlashga yordam beradi.
 - Ba'zi ogohlantirishlar (masalan, `preview` yoki `module`) Java versiyasiga bog'liq bo'lib, faqat yangi versiyalarda ishlaydi.
+---
+
+# Creating Custom Annotaion
