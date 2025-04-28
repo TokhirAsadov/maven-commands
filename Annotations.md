@@ -53,3 +53,22 @@
 ---
 
 # Creating Custom Annotaion
+```java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+// Annotatsiya aniqlash
+@Retention(RetentionPolicy.RUNTIME) // Runtime'da saqlanadi
+@Target(ElementType.METHOD) // Faqat metodlarga qo'llaniladi
+public @interface MyCustomAnnotation {
+    String value() default "default"; // Parametr
+    int priority() default 1; // Yana bir parametr
+}
+```
+Tushuntirish:
+
+- `@Retention(RetentionPolicy.RUNTIME)`: Annotatsiya `runtime`'da reflection orqali o'qilishi mumkin.
+- `@Target(ElementType.METHOD)`: Annotatsiya faqat `metod`larga qo'llaniladi.
+- `value` va `priority` — annotatsiyaning parametrlaridir. `default` qiymatlar ularga ixtiyoriy qiymat berish imkonini beradi.
