@@ -1,5 +1,12 @@
 # API Documentation
 
+````shell
+cd src/main/resources/
+java -jar test.jar
+````
+
+---
+
 ## Groups API
 
 ### 1. Create a New Group
