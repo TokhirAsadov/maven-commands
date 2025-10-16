@@ -132,12 +132,10 @@ java -jar test.jar
       "name": "Ali Valiev",
       "age": 20,
       "gpa": 3.26,
-      "group": {
-        "id": 1
-      }
+      "groupId": 1
     }
     ```
-  - **Required Fields**: `name` (string), `age` (integer), `gpa` (double), `group` (Group obyektining ID si)
+  - **Required Fields**: `name` (string), `age` (integer), `gpa` (double), `groupId` (Long)
 - **Response**:
   - **Status**: `201 Created`
   - **Body**:
@@ -154,7 +152,9 @@ java -jar test.jar
       }
     }
     ```
-  - **Error**: `400 Bad Request` (agar noto'g'ri ma'lumot kelsa)
+  - **Error**: 
+    - `400 Bad Request` (agar noto'g'ri ma'lumot kelsa)
+    - `500 Internal Server Error` (agar `groupId` topilmasa)
 
 ### 2. Get All Students
 - **Endpoint**: `GET /api/students`
@@ -221,9 +221,7 @@ java -jar test.jar
       "name": "Ali Valiev Updated",
       "age": 21,
       "gpa": 3.5,
-      "group": {
-        "id": 1
-      }
+      "groupId": 1
     }
     ```
   - **Example**: `PUT /api/students/1`
@@ -243,7 +241,9 @@ java -jar test.jar
       }
     }
     ```
-  - **Error**: `404 Not Found` (agar ID topilmasa)
+  - **Error**: 
+    - `404 Not Found` (agar ID topilmasa)
+    - `500 Internal Server Error` (agar `groupId` topilmasa)
 
 ### 5. Delete Student
 - **Endpoint**: `DELETE /api/students/{id}`
