@@ -1,9 +1,9 @@
 # API Documentation
 
-````shell
+```shell
 cd src/main/resources/
 java -jar test.jar
-````
+```
 
 ---
 
