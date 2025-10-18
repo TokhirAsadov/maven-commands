@@ -1,7 +1,7 @@
 # API Documentation
 
 ```shell
-cd src/main/resources/
+cd src/server/
 java -jar test.jar
 ```
 
