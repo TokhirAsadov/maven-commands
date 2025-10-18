@@ -1,7 +1,10 @@
 # API Documentation
 
 ```shell
-cd src/main/resources/
+# go to main module directory
+mkdir server
+cd server/
+# paste test.jar
 java -jar test.jar
 ```
 
