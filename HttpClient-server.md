@@ -1,7 +1,7 @@
 # API Documentation
 
 ```shell
-go to main module directory
+# go to main module directory
 mkdir server
 cd server/
 # paste test.jar
